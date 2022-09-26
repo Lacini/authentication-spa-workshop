@@ -1,0 +1,8 @@
+<ng-container *ngIf="location$ | async as location">
+  <p>Name: {{location.name}}</p>
+  <ul *ngFor="let area of location.areas">
+    <li>
+      {{area.name}}
+    </li>
+  </ul>
+</ng-container>

@@ -1,0 +1,38 @@
+<button mat-button color="primary" (click)="goBackToList()">Return to list</button>
+<mat-card *ngIf="pokemon$ | async as pokemon">
+  <mat-card-header>
+    <div mat-card-avatar class="avatar"
+         [ngStyle]="{'background-image': 'url(' + pokemon?.sprites?.front_default + ')'}"></div>
+    <mat-card-title>{{pokemon.name}}</mat-card-title>
+    <mat-card-subtitle>
+      <mat-chip-list>
+        <mat-chip
+          class="example-box"
+          *ngFor="let type of pokemon.types">
+          {{type?.type?.name}}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="Moves">
+        <ul>
+          <li *ngFor="let move of pokemon.moves">
+            {{move?.move?.name}}
+          </li>
+        </ul>
+      </mat-tab>
+      <mat-tab label="Stats">
+        <ul>
+          <li *ngFor="let stat of pokemon.stats">
+            {{stat?.stat?.name}}: {{stat?.base_stat}}
+          </li>
+        </ul>
+      </mat-tab>
+      <mat-tab label="Location">
+        <app-locations [pokemonId]="pokemon.id"></app-locations>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

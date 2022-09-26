@@ -1,0 +1,7 @@
+<mat-list role="list" *ngIf="pokemonList$ | async as pokemonList">
+  <mat-list-item *ngFor="let pokemon of pokemonList" role="listitem">
+    {{pokemon.name}}
+    <span class="spacer"></span>
+    <button mat-button color="primary" (click)="goToDetails(pokemon)">More info</button>
+  </mat-list-item>
+</mat-list>
